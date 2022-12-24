@@ -15,13 +15,13 @@ if not os.path.exists(args.script):
 with open(args.script, "rb") as h:
 	contents = h.read().decode('utf-8')
 
-code_string = "+".join([f"chr({ord(x)})" for x in contents])
+code_string = "+".join([f"c({ord(x)})" for x in contents])
 code_string = f"{code_string}"
 
-script_string = "+".join([f"chr({ord(x)})" for x in "<script>"])
+script_string = "+".join([f"c({ord(x)})" for x in "<script>"])
 script_string = f"{script_string}"
 
-exec_string = "+".join([f"chr({ord(x)})" for x in "exec"])
+exec_string = "+".join([f"c({ord(x)})" for x in "exec"])
 exec_string = f"{exec_string}"
 
-print(f'python -c "exec(compile({code_string}, {script_string}, {exec_string}))"')
+print(f'python -c "c=chr;exec(compile({code_string}, {script_string}, {exec_string}))"')
